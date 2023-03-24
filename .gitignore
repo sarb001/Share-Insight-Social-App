@@ -1,0 +1,6 @@
+
+# API keys
+.env
+
+# For Removing Node Modules 
+node_modules/
