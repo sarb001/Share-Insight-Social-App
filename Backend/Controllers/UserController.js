@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
 
 
-
 const registerUser =  asyncHandler(async(req,res) => {
         try
         {

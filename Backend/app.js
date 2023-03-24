@@ -7,8 +7,12 @@ const Port =  process.env.PORT;
 const Mongodb_url =  process.env.MONGODB_URI;
 
 const UserRoutes = require('./Routes/Auth');
+const UserCreateRoutes = require('./Routes/Post');
+
 app.use(express.json());
+
 app.use('/' ,UserRoutes);
+app.use('/' ,UserCreateRoutes);
 
 
 mongoose.connect(Mongodb_url);
