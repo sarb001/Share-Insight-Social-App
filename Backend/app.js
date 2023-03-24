@@ -7,7 +7,7 @@ const Port =  process.env.PORT;
 const Mongodb_url =  process.env.MONGODB_URI;
 
 const UserRoutes = require('./Routes/Auth');
-
+app.use(express.json());
 app.use('/' ,UserRoutes);
 
 
