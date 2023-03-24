@@ -1,6 +1,9 @@
 const User = require('../Models/User');
 const  asyncHandler = require('express-async-handler');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET;
+
 
 
 const registerUser =  asyncHandler(async(req,res) => {
@@ -51,7 +54,7 @@ const loginUser =  asyncHandler(async(req,res) => {
      {
         const {email, password} = req.body;
 
-        if(!email || !password){
+        if(!email || !password){W
             return res.status(422).json({error: " Please Add Email or Password "})
         }
         User.findOne({email:email})
@@ -62,7 +65,9 @@ const loginUser =  asyncHandler(async(req,res) => {
                 bcrypt.compare(password,saveduser.password)
                 .then(domatch => {
                         if(domatch){
-                                res.json({message : " Successfully Signed In "})
+                                // res.json({message : " Successfully Signed In "})
+                                const token  = jwt.sign({_id : saveduser._id},JWT_SECRET)
+                                res.json({token});
                         }else{
                                 return res.status(422).json({error: " Invalid Email or Password "})
                         }
