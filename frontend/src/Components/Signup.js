@@ -1,8 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import './Signup.css';
+import  { toast } from  'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Signup = () => {
+
+  const[name,setname] = useState("");
+  const[email,setemail] = useState("");
+  const[password,setpassword] = useState("");
+  const navigate = useNavigate();
+
+  const postdata = () => {
+        if(!name ||!email || !password){
+          toast.warn(' Please Fill All Fields ');
+          return;
+        }
+
+    try{
+      const config = {
+        headers: { 'Content-type' : 'application/json' }, 
+      }
+
+       const { data }  = axios.post('/signup' , 
+       {name,
+        email,
+        password},config)
+       toast.success(' User is registered Successfully ')
+       navigate('/login');
+
+    }catch(error)
+    { 
+      toast.error(' Something Went Wrong ')
+    }
+  }
+
   return (
     <div  id = "signup-main" > 
            <div className = "container-main" >
@@ -53,19 +86,23 @@ const Signup = () => {
                                           <form  id = "signup-form">
 
                                               <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label>  Name </label>
-                                              <input type = "text"       placeholder = 'Enter your Name... '/>
+                                              <input type = "text"       placeholder = 'Enter your Name... '  
+                                              onChange = {(e) => setname(e.target.value)}  value= {name} />
                                               </span>
 
                                               <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label>  Email </label>
-                                              <input type = "email"       placeholder = 'Enter your Email... '/>
+                                              <input type = "email"       placeholder = 'Enter your Email... ' 
+                                              onChange = {(e) => setemail(e.target.value)}  value= {email}  />
                                               </span>
 
                                               <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label> Password </label>
-                                              <input type = "password"   placeholder = 'Enter your Password... '/>
+                                              <input type = "password"   placeholder = 'Enter your Password... ' 
+                                              onChange = {(e) => setpassword(e.target.value)}  value= {password}  />
                                               </span>
                                               
                                               <span style = {{paddingTop:'5%'}}> 
-                                              <button type = "submit" style = {{backgroundColor:'black',padding:'3% 5%',color:'white'}}> 
+                                              <button type = "submit" style = {{backgroundColor:'black',padding:'3% 5%',
+                                              color:'white'}}  onClick = {() => postdata()} > 
                                               SignUp </button>  </span> 
                                               <span>
                                                 <Link to = "/login"> Have an Account? Login  </Link>  

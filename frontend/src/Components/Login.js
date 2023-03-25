@@ -1,8 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import './Login.css';
+import axios from 'axios';
+import  { toast } from  'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
+  const [email,setemail] = useState("");
+  const [password,setpassword] = useState("")
+   const navigate = useNavigate("");
+
+
+  const  logindata = async(e) => {
+    e.preventDefault();
+
+    if(!email || !password){
+      toast.warn(' Please Fill all the Fields ')
+    }
+    try
+    {
+      const config = {
+        headers : { 'Content-type' : 'application/json' }, 
+      }
+
+      const {data} = await  axios.post('/login', {
+        email ,password},config);
+        
+        console.log(' Dataa is - ',data)
+        localStorage.setItem('jwt',data.token)
+        localStorage.setItem('user',JSON.stringify(data.user))
+        toast.success(' Successfully LoggedIn ')
+        navigate('/');
+
+    }catch(error)
+     {
+       toast.error(' Wrong Credentials ')
+     }
+  }
+
   return (
     
     <div> 
@@ -43,14 +79,16 @@ const Login = () => {
 
                                 <div className="main-login-form">
 
-                                      <form id = "main-form" >
+                                      <form id = "main-form"  onSubmit = {logindata}>
                                         <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'8% 8%'}}> 
                                          <label>  Email </label>
-                                        <input type = "email"      placeholder = 'Enter your Email... '/>
+                                        <input type = "email"      placeholder = 'Enter your Email... '   
+                                         value = {email} onChange = {(e) => setemail(e.target.value)} />
                                         </span>
 
                                         <span  style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'8% 8%'}}>  <label> Password </label>
-                                        <input type = "password"   placeholder = 'Enter your Password... '/>
+                                        <input type = "password"   placeholder = 'Enter your Password... ' 
+                                         value = {password} onChange = {(e) => setpassword(e.target.value)} />
                                         </span>
                                         
                                         <span id = "login-btn"> <button style = {{backgroundColor:'black',padding:'3% 5%',color:'white'}}>  
