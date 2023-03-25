@@ -24,7 +24,7 @@
 
     @media screen and  (max-width: 576px){
         .container-main {
-            background-color: red;
+            background-color: rgb(255, 255, 255);
         }
         .signup-side{
             display: grid;
@@ -44,7 +44,7 @@
     
     @media only screen and  (min-width:576px) and (max-width: 768px){
         .container-main {
-            background-color: rgb(0, 217, 255);
+            background-color: rgb(255, 255, 255);
         }
         #signup-main{
             margin-top: 60px;
@@ -53,15 +53,16 @@
     
     @media  only screen and (min-width: 768px) and  (max-width: 992px){
         .container-main {
-            background-color: orange;
+            background-color: rgb(255, 255, 255);
         }
         #signup-main{
             margin-top: 60px;
         }
     }
+
     @media only screen and (min-width: 992px) and  (max-width: 1200px){
         .container-main {
-            background-color:chartreuse
+          background-color: rgb(255, 255, 255);
         }
         #signup-main{
             margin-top: 60px;

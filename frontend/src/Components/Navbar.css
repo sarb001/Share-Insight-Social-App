@@ -24,10 +24,10 @@
 
 @media screen and (max-width:576px){
     .navbar-main{
-        background-color: rgb(221, 243, 18);
+        background-color: rgb(223, 234, 231);
         display: grid;
         grid-template-columns: 1fr 1fr;
-        padding: 2%;
+        padding: 0%;
         height: 8vh;
     }
     #hamburger-logo{
@@ -68,7 +68,7 @@
 
 @media only screen and  (min-width:576px) and (max-width: 768px){
     .navbar-main{
-        background-color: rgb(225, 22, 22);
+        background-color: rgb(223, 234, 231);
     }
     #logo-text{
         font-size: 18px;
@@ -82,7 +82,7 @@
 
 @media only screen and  (min-width:768px) and (max-width: 992px){
     .navbar-main {
-        background-color: rgb(91, 114, 118);
+        background-color: rgb(223, 234, 231);
     }
     .nav-first{
         padding: 0%;
@@ -98,7 +98,7 @@
 
 @media only screen and  (min-width:992px) and (max-width: 1200px){
     .navbar-main{
-        background-color: rgb(183, 0, 255);
+        background-color: rgb(223, 234, 231);
     }
 }
 
