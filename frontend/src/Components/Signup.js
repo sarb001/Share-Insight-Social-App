@@ -87,17 +87,17 @@ const Signup = () => {
 
                                               <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label>  Name </label>
                                               <input type = "text"       placeholder = 'Enter your Name... '  
-                                              onChange = {(e) => setname(e.target.value)}  value= {name} />
+                                              onChange = {(e) => setname(e.target.value)}  value= {name}  required/>
                                               </span>
 
                                               <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label>  Email </label>
                                               <input type = "email"       placeholder = 'Enter your Email... ' 
-                                              onChange = {(e) => setemail(e.target.value)}  value= {email}  />
+                                              onChange = {(e) => setemail(e.target.value)}  value= {email}   required />
                                               </span>
 
                                               <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label> Password </label>
                                               <input type = "password"   placeholder = 'Enter your Password... ' 
-                                              onChange = {(e) => setpassword(e.target.value)}  value= {password}  />
+                                              onChange = {(e) => setpassword(e.target.value)}  value= {password}   required/>
                                               </span>
                                               
                                               <span style = {{paddingTop:'5%'}}> 

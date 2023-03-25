@@ -6,8 +6,8 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const createpost = asyncHandler(async(req,res) => {
 
     try{
-        const {title,body} = req.body;
-        if(!title || !body){
+        const {title,body,photo} = req.body;
+        if(!title || !body || !photo){
             return res.status(422).json({error : ' Please Add All the Fields '})
         }
         console.log(' User Requested or Logged User is - ',req.user);
@@ -15,6 +15,7 @@ const createpost = asyncHandler(async(req,res) => {
         const post = new Post({
             title,
             body,
+            photo,
             postedBy : req.user 
         }) 
         post.save().then(result => {
