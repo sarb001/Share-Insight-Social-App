@@ -2,6 +2,7 @@ const Post = require('../Models/Post');
 const  asyncHandler = require('express-async-handler');
 const JWT_SECRET = process.env.JWT_SECRET;
 
+
 const createpost = asyncHandler(async(req,res) => {
 
     try{
@@ -47,4 +48,20 @@ const allposts = asyncHandler(async(req,res) => {
     }
 })
 
-module.exports = {  createpost ,allposts };
+const mypost = asyncHandler(async(req,res) => {
+    try{
+        Post.find({postedBy:req.user._id})
+        .populate("postedBy","_id name")
+        .then(mypost => {
+           res.json({mypost})
+        })
+        .catch(err => {
+           console.log(err)
+        })
+    }catch(error){
+        console.log(error);
+        res.status(422).json(' Something Worng ')
+    }
+})
+
+module.exports = {  createpost ,allposts ,mypost };
