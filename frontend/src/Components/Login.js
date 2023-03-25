@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
@@ -16,7 +17,7 @@ const Login = () => {
                         </div>
 
                         <div className = "second-part">
-                            <Form   onSubmit = {handlelogin}   style = {{border:'1px solid black',padding:'8%'}}>
+                            {/* <Form   onSubmit = {handlelogin}   style = {{border:'1px solid black',padding:'8%'}}>
                           
                                   <Form.Group className = "mb-3" controlId = "formBasicEmail">
                                   <Form.Label style = {{display:'grid',textAlign:'start'}}> Email address </Form.Label>
@@ -38,7 +39,26 @@ const Login = () => {
                                         Don't have an Account ? SignUp  </Link> 
                                   </div>
 
-                            </Form>
+                            </Form> */}
+
+                                <div className="main-login-form">
+
+                                      <form id = "main-form" >
+                                        <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'8% 8%'}}> 
+                                         <label>  Email </label>
+                                        <input type = "email"      placeholder = 'Enter your Email... '/>
+                                        </span>
+
+                                        <span  style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'8% 8%'}}>  <label> Password </label>
+                                        <input type = "password"   placeholder = 'Enter your Password... '/>
+                                        </span>
+                                        
+                                        <span id = "login-btn"> <button style = {{backgroundColor:'black',padding:'3% 5%',color:'white'}}>  
+                                        Login Here </button> </span>
+                                        <span id = "signup-link"> 
+                                          <Link to = "/signup"> Create New Account ? SignUp </Link> </span>
+                                      </form>
+                                </div>
                         </div>
                 </div>
             </div>

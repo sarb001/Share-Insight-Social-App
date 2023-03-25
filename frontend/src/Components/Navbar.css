@@ -82,7 +82,7 @@
 
 @media only screen and  (min-width:768px) and (max-width: 992px){
     .navbar-main {
-        background-color: rgb(101, 140, 147);
+        background-color: rgb(91, 114, 118);
     }
     .nav-first{
         padding: 0%;
@@ -104,6 +104,6 @@
 
 @media screen and  (min-width: 1200px){
     .navbar-main{
-        background-color: rgb(17, 238, 219);
+        background-color: rgb(223, 234, 231);
     }
 }

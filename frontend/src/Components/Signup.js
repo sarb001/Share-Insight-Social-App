@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './Signup.css';
 
 const Signup = () => {
   return (
-    <div> 
+    <div  id = "signup-main" > 
            <div className = "container-main" >
                   <div className = "signup-side">
                         
@@ -15,7 +16,7 @@ const Signup = () => {
                         </div>
 
                           <div className = "second-part">
-                                    <Form style = {{border:'1px solid black',padding:'8%'}}>
+                                    {/* <Form style = {{border:'1px solid black',padding:'8%'}}>
 
                                                   <Form.Group className="mb-3" controlId = "formBasicName">
                                                     <Form.Label style = {{display:'grid',textAlign:'start'}}> Name </Form.Label>
@@ -46,7 +47,31 @@ const Signup = () => {
                                                 <div style = {{paddingTop:'5%'}}> 
                                                   <Link to = "/login" style = {{textDecoration:'none'}} > Have an Account ? Login  </Link> 
                                               </div>
-                                    </Form>
+                                    </Form> */}
+
+                                     <div className="main-form">
+                                    <form  id = "signup-form">
+
+                                        <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label>  Name </label>
+                                        <input type = "text"       placeholder = 'Enter your Name... '/>
+                                        </span>
+
+                                        <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label>  Email </label>
+                                        <input type = "email"       placeholder = 'Enter your Email... '/>
+                                        </span>
+
+                                        <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label> Password </label>
+                                        <input type = "password"   placeholder = 'Enter your Password... '/>
+                                        </span>
+                                        
+                                        <span style = {{paddingTop:'5%'}}> 
+                                        <button type = "submit" style = {{backgroundColor:'black',padding:'3% 5%',color:'white'}}> 
+                                        SignUp </button>  </span> 
+                                        <span>
+                                          <Link to = "/login"> Have an Account? Login  </Link>  
+                                        </span> 
+                                    </form>
+                                      </div>   
                           </div>
                   </div>
           </div> 
