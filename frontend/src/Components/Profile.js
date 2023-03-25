@@ -27,18 +27,23 @@ const Profile = () => {
                      <span style = {{margin:'2%'}}>
                        <img src = "/photo-1.avif" style = {{width:'160px',height:'160px',objectFit:'cover'}} />
                      </span>
+
                      <span style = {{margin:'2%'}}>
                        <img src = "/photo-1.avif" style = {{width:'160px',height:'160px',objectFit:'cover'}} />
                      </span>
+
                      <span style = {{margin:'2%'}}>
                        <img src = "/photo-1.avif" style = {{width:'160px',height:'160px',objectFit:'cover'}} />
                      </span>
+                     
                      <span style = {{margin:'2%'}}>
                        <img src = "/photo-1.avif" style = {{width:'160px',height:'160px',objectFit:'cover'}} />
                      </span>
+
                      <span style = {{margin:'2%'}}>
                        <img src = "/photo-1.avif" style = {{width:'160px',height:'160px',objectFit:'cover'}} />
                      </span>
+
                      <span style = {{margin:'2%'}}>
                        <img src = "/photo-1.avif" style = {{width:'160px',height:'160px',objectFit:'cover'}} />
                      </span>

@@ -10,11 +10,15 @@ const Navbar = () => {
   return (
     <div>
                 <div className = "navbar-main">
-                      <div className = "nav-first">  <span id = "logo-text" > Insight App </span>   </div>
+
+                      <div className = "nav-first">  <span id = "logo-text" > 
+                       <Link  to = "/">   Insight App   </Link>   
+                      </span>   </div>
                       <div className =  {showmediaicons ? "nav-second mobile-menu-link" :  "nav-second"} > 
                           <div> <Link to = "/signup"     style = {{textDecoration:'none'}}> Signup  </Link>  </div>
                           <div> <Link to = "/login"      style = {{textDecoration:'none'}}> Login  </Link>  </div>
-                          <div> <Link to = "/profile"    style = {{textDecoration:'none'}}> Profile </Link>  </div>
+                          {/* <div> <Link to = "/profile"    style = {{textDecoration:'none'}}> Profile </Link>  </div> */}
+                          <div> <Link to = "/createpost"    style = {{textDecoration:'none'}}> CreatePost </Link>  </div>
                       </div>
 
                           <div  id = "hamburger-logo"  >
