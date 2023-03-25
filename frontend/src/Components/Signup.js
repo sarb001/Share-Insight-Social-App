@@ -50,27 +50,27 @@ const Signup = () => {
                                     </Form> */}
 
                                      <div className="main-form">
-                                    <form  id = "signup-form">
+                                          <form  id = "signup-form">
 
-                                        <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label>  Name </label>
-                                        <input type = "text"       placeholder = 'Enter your Name... '/>
-                                        </span>
+                                              <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label>  Name </label>
+                                              <input type = "text"       placeholder = 'Enter your Name... '/>
+                                              </span>
 
-                                        <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label>  Email </label>
-                                        <input type = "email"       placeholder = 'Enter your Email... '/>
-                                        </span>
+                                              <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label>  Email </label>
+                                              <input type = "email"       placeholder = 'Enter your Email... '/>
+                                              </span>
 
-                                        <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label> Password </label>
-                                        <input type = "password"   placeholder = 'Enter your Password... '/>
-                                        </span>
-                                        
-                                        <span style = {{paddingTop:'5%'}}> 
-                                        <button type = "submit" style = {{backgroundColor:'black',padding:'3% 5%',color:'white'}}> 
-                                        SignUp </button>  </span> 
-                                        <span>
-                                          <Link to = "/login"> Have an Account? Login  </Link>  
-                                        </span> 
-                                    </form>
+                                              <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5% 1%'}}> <label> Password </label>
+                                              <input type = "password"   placeholder = 'Enter your Password... '/>
+                                              </span>
+                                              
+                                              <span style = {{paddingTop:'5%'}}> 
+                                              <button type = "submit" style = {{backgroundColor:'black',padding:'3% 5%',color:'white'}}> 
+                                              SignUp </button>  </span> 
+                                              <span>
+                                                <Link to = "/login"> Have an Account? Login  </Link>  
+                                              </span> 
+                                          </form>
                                       </div>   
                           </div>
                   </div>
