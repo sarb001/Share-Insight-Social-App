@@ -1,7 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
-const { createpost  ,allposts ,mypost ,likepost ,unlikepost ,comment } = require('../Controllers/PostController');
+const { createpost  ,allposts ,mypost ,likepost ,unlikepost ,comment  ,deletepost } = require('../Controllers/PostController');
 
 const protectedroute = require('../Middleware/RequireLogin');
 
@@ -16,5 +16,7 @@ router.route('/likepost').put(protectedroute,likepost)
 router.route('/unlikepost').put(protectedroute,unlikepost)
 
 router.route('/comment').put(protectedroute,comment)
+
+router.route('/deletepost/:postId').delete(protectedroute,deletepost)
 
 module.exports = router;

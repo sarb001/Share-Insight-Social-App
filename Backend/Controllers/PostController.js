@@ -131,4 +131,24 @@ const comment = asyncHandler(async(req,res) => {
 })
 
 
-module.exports = {  createpost ,allposts ,mypost , likepost , unlikepost , comment};
+const deletepost = asyncHandler(async(req,res) => {
+
+    
+    Post.findOne({_id : req.params.postId})
+   .populate("postedBy","_id")
+   .then((item) => {
+              console.log(' item is  ',item);
+              if(item.postedBy._id.toString() === req.user._id.toString()){
+                   item.deleteOne()
+                   .then((res) => {
+                       res.status(200).json({message : ' Successfully Deleted '})
+                       console.log('item DDDDDelted')
+                  }).catch(err => {
+                      console.log(err)
+                  })
+              }
+      })
+})
+
+
+module.exports = {  createpost ,allposts ,mypost , likepost , unlikepost , comment ,deletepost};

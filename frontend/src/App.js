@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { initialState, reducer } from './Components/Reducers/userReducer';
 import { useNavigate } from 'react-router-dom';
+import UserProfile from './Components/UserProfile';
 
 export const UserContext = createContext();
 
@@ -36,6 +37,7 @@ const Routing = () => {
          <Route  path = "/signup"  element = {<Signup />} >  </Route>
          <Route  path = "/login"   element = {<Login />}>     </Route>
          <Route path = "/profile"  element = {<Profile />}>    </Route>
+         <Route path = "/profile/:userid"  element = {<UserProfile />}>    </Route>
          <Route path = "/createpost"  element = {<CreatePost />}>    </Route>
      </Routes>
    </>

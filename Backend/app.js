@@ -8,11 +8,13 @@ const Mongodb_url =  process.env.MONGODB_URI;
 
 const UserRoutes = require('./Routes/Auth');
 const UserCreateRoutes = require('./Routes/Post');
+const UsersRoutes = require('./Routes/Users');
 
 app.use(express.json());
 
 app.use('/' ,UserRoutes);
 app.use('/' ,UserCreateRoutes);
+app.use('/' ,UsersRoutes);
 
 
 mongoose.connect(Mongodb_url);

@@ -4,8 +4,9 @@ import  { Card ,CardBody ,Image ,Stack ,Heading ,Text  ,
 }from '@chakra-ui/react'
 import { UserContext } from '../App';
 import axios from 'axios';
-import  { AiFillHeart } from 'react-icons/ai';
+import  { AiFillHeart , AiFillDelete } from 'react-icons/ai';
 import { toast } from 'react-toastify';
+
 
 const Home = () => {
 
@@ -106,6 +107,34 @@ const Home = () => {
       }
   }
 
+  const deletepost = (postid) => {
+
+    try{      
+      const config = {
+          headers : {
+              "Content-Type"  : "application/json",
+              'Authorization' : "Bearer " + localStorage.getItem('jwt')
+          }
+      }
+
+          axios.delete(`/deletepost/${postid}`,config)
+         .then(result => {  
+          console.log(' Delete data Responsee  is -' ,result)
+          const newdata = data.filter(item => {      
+            return item._id !== result._id
+          })
+          setdata(newdata)
+        })
+      toast.success(' Post  Deleted  ')
+      
+    }catch(error)
+      {
+          console.log(' err  while Unlike  post is -',error );
+          toast.error(' Something Went Wrong')
+      }
+  }
+
+
 
   return (
     <>
@@ -117,7 +146,16 @@ const Home = () => {
                              <Card maxW = 'sm' key = {item._id}>
 
                              <CardBody>
-                                 <Heading size='md'>  {item?.postedBy?.name} </Heading>
+                                 <span style = {{display:'grid',gridTemplateColumns:'1fr 20px'}}>
+                                  <Heading size='md'>  {item?.postedBy?.name} </Heading>
+                                      <span style = {{fontSize:'23px',backgroundColor:'wheat',alignSelf:'center',display:'flex'}}> 
+                                        { item?.postedBy?._id === state?._id && 
+                                          <AiFillDelete  onClick = {() => deletepost(item?._id)} /> 
+                                        }
+                                      </span> 
+                                 </span>
+                                 <Divider />
+                                
                                <Image
                                  src = {item?.photo}
                                  alt='Green double couch with wooden legs'
