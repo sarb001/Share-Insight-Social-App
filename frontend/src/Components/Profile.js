@@ -41,8 +41,8 @@ const Profile = () => {
                         <span> {state ? state.name : "Loading..."} </span>
                         <div> 
                           <span> { pics ? pics.length : "No Photo present" } posts </span>
-                          <span> 40 followers </span>
-                          <span> 40 following  </span>
+                          <span>  {state? state.followers?.length : "0"  }  followers </span>
+                          <span>  {state? state.following?.length : "0"  }   following  </span>
                         </div>
                     </div>
                 </div>
