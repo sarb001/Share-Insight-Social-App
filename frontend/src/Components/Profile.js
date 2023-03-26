@@ -1,6 +1,28 @@
-import React from 'react'
+import React, { useContext, useEffect ,useState } from 'react'
+import axios from 'axios';
+import { UserContext } from '../App';
 
 const Profile = () => {
+
+   const [pics,setpics] = useState([]);
+   const {state,dispatch} = useContext(UserContext);
+
+  useEffect(() => {
+    const config = {
+      headers : {
+        "Content-Type"  : "application/json",
+        'Authorization' : "Bearer " + localStorage.getItem('jwt')
+      }
+    }
+      //  setloading(true)
+    axios.get('/mypost',config)
+    .then(res => { console.log(' My Post is---',res.data.mypost)
+      setpics(res.data.mypost)
+      //  setloading(false)
+    })
+},[])
+
+
   return (
     <div style = {{marginTop:'85px'}}>
           <div className = "main-profile" style = {{maxWidth:'550px',margin:'0px auto'}}>
@@ -14,40 +36,27 @@ const Profile = () => {
                     </div>
 
                     <div className = "profile-data" style = {{textAlign:'center',alignSelf:'center'}}>
-                        <span> ramesh verma   </span>
+                        <span> {state ? state.name : "Loading..."} </span>
                         <div> 
-                          <span> 40 posts </span>
+                          <span> { pics ? pics.length : "No Photo present" } posts </span>
                           <span> 40 followers </span>
                           <span> 40 following  </span>
                         </div>
                     </div>
                 </div>
 
-                <div className="second-side-profile" style = {{display:'flex',flexWrap:'wrap',justifyContent:'space-between',paddingTop:'40px'}}> 
-                     <span style = {{margin:'2%'}}>
-                       <img src = "/photo-1.avif" style = {{width:'160px',height:'160px',objectFit:'cover'}} />
-                     </span>
+                <div className="second-side-profile" style = {{display:'flex',flexWrap:'wrap',justifyContent:'space-evenly',paddingTop:'40px'}}> 
+                      {pics.map(item => {
+                        return (
+                          <>
+                           <span style = {{margin:'1%'}}>
+                               <img src = {item.photo} style = {{width:'160px',height:'160px',objectFit:'cover'}} />
+                            </span>
+                          </>
+                         )
+                      })}
 
-                     <span style = {{margin:'2%'}}>
-                       <img src = "/photo-1.avif" style = {{width:'160px',height:'160px',objectFit:'cover'}} />
-                     </span>
-
-                     <span style = {{margin:'2%'}}>
-                       <img src = "/photo-1.avif" style = {{width:'160px',height:'160px',objectFit:'cover'}} />
-                     </span>
                      
-                     <span style = {{margin:'2%'}}>
-                       <img src = "/photo-1.avif" style = {{width:'160px',height:'160px',objectFit:'cover'}} />
-                     </span>
-
-                     <span style = {{margin:'2%'}}>
-                       <img src = "/photo-1.avif" style = {{width:'160px',height:'160px',objectFit:'cover'}} />
-                     </span>
-
-                     <span style = {{margin:'2%'}}>
-                       <img src = "/photo-1.avif" style = {{width:'160px',height:'160px',objectFit:'cover'}} />
-                     </span>
-                      
               </div>
           </div>
     </div>

@@ -3,17 +3,22 @@ import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { UserContext } from '../App';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
 
   const {state,dispatch} = useContext(UserContext); 
   const [showmediaicons,setshowmediaicons] = useState(false);
+  const  navigate = useNavigate();
 
   const renderList = () => {
     if(state){
       return [
         <li> <Link to = "/profile"> Profile  </Link>    </li>,
-        <li> <Link to = "/createpost"> Create Post </Link>    </li>
+        <li> <Link to = "/createpost"> Create Post </Link>    </li>,
+        <li   
+          onClick = {() =>    { localStorage.clear();   dispatch({type:"CLEAR"}); navigate("/login") }}> 
+          Logout   </li>
       ]
     }else{
        return [
