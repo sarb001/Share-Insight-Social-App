@@ -2,13 +2,14 @@ import React, { useContext, useEffect , useState } from 'react'
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { UserContext } from '../App';
-
+import { toast } from 'react-toastify';
 
 const UserProfile = () => {
 
      const [userprofile,setuserprofile] = useState(null);
       const { userid } = useParams();
-    const {state,dispatch} = useContext(UserContext);
+     const {state,dispatch} = useContext(UserContext);
+      const [showfollower,setshowfollower] = useState(true);
 
     useEffect(() => {
         loadata();
@@ -32,6 +33,74 @@ const UserProfile = () => {
        })
     }
 
+    const  followuser = async() => {
+      const config = {
+        headers : {
+            "Content-Type"  : "application/json",
+            'Authorization' : "Bearer " + localStorage.getItem('jwt')
+        }
+      }
+  
+       const followuserhere = await axios.put('/follow',{
+         followId : userid 
+       },config)
+       .then(res => 
+        {
+          console.log(' Follow user Front is --',res.data);
+          dispatch({type:"UPDATE",payload : {following : res.data.following,followers : res.data.followers}})
+          localStorage.setItem("user",JSON.stringify(res.data))
+          toast.success(' User has been Followed ')
+          setuserprofile((prevstate) => {
+             return{
+              ...prevstate,
+              user : {
+                ...prevstate.user,
+                followers :[...prevstate.item.followers,res.data._id]
+              }
+             }
+          })
+          setshowfollower(false);
+        }).catch(err => {
+          console.log('Error in Follow user',err);
+        })
+    }
+
+
+    const unfollowuser = async() => {
+
+      const config = {
+        headers : {
+            "Content-Type"  : "application/json",
+            'Authorization' : "Bearer " + localStorage.getItem('jwt')
+        }
+      }
+  
+       const unfollowuserhere = await axios.put('/unfollow',{
+         unfollowId : userid 
+       },config)
+       .then(res => 
+        {
+          console.log(' Followuser Front is --',res.data);
+          dispatch({type:"UPDATE",payload : {following : res.data.following,followers : res.data.followers}})
+          toast.success(' User has been Unfollowed ')
+          setuserprofile((prevstate) => {
+            const newFollower = prevstate.item.followers.filter(item => item != res.data._id)
+            return{
+             ...prevstate,
+             user : {
+               ...prevstate.user,
+               followers : newFollower
+             }
+            }
+         })
+         setshowfollower(true);
+  
+        }).catch(err => {
+          console.log('Error in Unfollow user',err);
+        })
+
+    }
+
 
   return (
     <div> 
@@ -53,8 +122,18 @@ const UserProfile = () => {
                                                              </span>
                                                             <div> 
                                                                 <span>  {userprofile?.posts.length}  posts </span>
-                                                                <span>  40  followers </span>
-                                                                <span> 40 following  </span>
+                                                                <span>  {userprofile?.item.followers.length}  followers </span>
+                                                                <span>  {userprofile?.item.following.length}  following  </span>
+                                                            </div>
+                                                            <div className="follow-btn">
+
+                                                               {showfollower ? (
+                                                                 <>
+                                                                 <button  style = {{backgroundColor:'brown',padding:'2% 5%'}} onClick = {() => followuser()}>  Follow  </button>
+                                                               </>) : (
+                                                                 <>
+                                                                 <button  style = {{backgroundColor:'brown',padding:'2% 5%'}} onClick = {() => unfollowuser()}>  UnFollow  </button>
+                                                               </>)}
                                                             </div>
                                                         </div>
                                 </div>

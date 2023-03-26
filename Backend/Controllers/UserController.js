@@ -66,8 +66,8 @@ const loginUser =  asyncHandler(async(req,res) => {
                         if(domatch){
                                 // res.json({message : " Successfully Signed In "})
                                 const token  = jwt.sign({_id : saveduser._id},JWT_SECRET)
-                                const {_id,email,name} = saveduser;
-                                res.json({token , user : {_id,email,name}});
+                                const {_id,email,name,followers,following} = saveduser;
+                                res.json({token , user : {_id,email,name,followers,following}});
                         }else{
                                 return res.status(422).json({error: " Invalid Email or Password "})
                         }

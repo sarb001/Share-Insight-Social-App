@@ -18,8 +18,8 @@ const userSchema = new mongoose.Schema({
     //     type:String,
     //     default : "https://res.cloudinary.com/damnzg3hr/image/upload/v1678509086/dy1nibu4xqdqafijnl3k.jpg"
     // },
-    // followers : [{type:ObjectId,ref :"User"}],
-    // following : [{type:ObjectId,ref :"User"}],
+    followers : [{type:ObjectId,ref :"User"}],
+    following : [{type:ObjectId,ref :"User"}],
 })
 
 module.exports = mongoose.model('User',userSchema);

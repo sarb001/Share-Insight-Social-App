@@ -22,6 +22,8 @@ const Profile = () => {
     })
 },[])
 
+  
+
 
   return (
     <div style = {{marginTop:'85px'}}>

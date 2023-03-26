@@ -25,4 +25,49 @@ const getuser   = asyncHandler(async(req,res) => {
     }
 })
 
-module.exports = { getuser }
+const followuser = asyncHandler(async(req,res) => {
+    try{
+        User.findByIdAndUpdate(req.body.followId,{
+            $push : {followers : req.user._id}
+        },{
+            new: true
+        }).then((result) => {
+             User.findByIdAndUpdate(req.user._id,{
+                $push: {following:req.body.followId}
+             },{new: true}).then(result => {
+                res.status(200).json(result)
+             }).catch(err => {
+                 res.status(422).json({error : err})
+             })
+        })
+    }catch(err)
+    {
+        console.log('Err in Backend in Followuser',err)
+    }
+})    
+
+
+const unfollowuser = asyncHandler(async(req,res) => {
+    try{
+        User.findByIdAndUpdate(req.body.unfollowId,{
+            $pull : {followers : req.user._id}
+        },{
+            new: true
+        }).then((result) => {
+             User.findByIdAndUpdate(req.user._id,{
+                $pull : {following : req.body.unfollowId}
+             },{new: true}).select("-password").then(result => {
+                res.status(200).json(result)
+             }).catch(err => {
+                 res.status(422).json({error : err})
+             })
+        })
+    }catch(err)
+    {
+        console.log('Err in Backend in UnFollowuser ',err)
+    } 
+})    
+
+
+
+module.exports = { getuser ,followuser ,unfollowuser }
