@@ -31,7 +31,6 @@ const createpost = asyncHandler(async(req,res) => {
     }
 })
 
-
 const allposts = asyncHandler(async(req,res) => {
     try{
         Post.find()
@@ -65,4 +64,43 @@ const mypost = asyncHandler(async(req,res) => {
     }
 })
 
-module.exports = {  createpost ,allposts ,mypost };
+const likepost = asyncHandler(async(req,res) => {
+            try{
+                Post.findByIdAndUpdate(req.body.postId ,{
+                    $push : {likes:req.user._id}
+                },{
+                    new: true
+                }).then((res) => {
+                    res.json(res)
+                }).catch((err) => {
+                    return res.status(422).json({error: err})
+                })
+                
+            }catch(error)
+            { 
+                console.log('Like Error are--',err);
+                res.send({err : ' Like  error occured in '})
+            }
+})
+
+const unlikepost = asyncHandler(async(req,res) => {
+         try{
+            Post.findByIdAndUpdate(req.body.postId ,{
+                $pull : {likes:req.user._id}
+            },{
+                new: true
+            })
+            .then((res) => {
+                res.json(res)
+            }).catch((err) => {
+                return res.status(422).json({error: err})
+            })
+        }catch(error)
+        { 
+            console.log(' UnLike Error are--',err);
+            res.send({err : ' UnLike  error occured in '})
+        }
+})
+
+
+module.exports = {  createpost ,allposts ,mypost , likepost , unlikepost};

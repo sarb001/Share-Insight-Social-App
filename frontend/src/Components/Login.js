@@ -14,7 +14,6 @@ const Login = () => {
 
    const {state,dispatch} = useContext(UserContext);
 
-
   const  logindata = async(e) => {
     e.preventDefault();
 

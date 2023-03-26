@@ -4,7 +4,8 @@ import  { Card ,CardBody ,Image ,Stack ,Heading ,Text  ,
 }from '@chakra-ui/react'
 import { UserContext } from '../App';
 import axios from 'axios';
-
+import  { AiFillHeart } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 
 const Home = () => {
 
@@ -31,6 +32,55 @@ const Home = () => {
    },[])
 
 
+   const likepost = (id) => {
+    try{      
+
+      const config = {
+          headers : {
+              "Content-Type"  : "application/json",
+              'Authorization' : "Bearer " + localStorage.getItem('jwt')
+          }
+      }
+
+      axios.put('/likepost' , {
+        postId : id
+      },config)
+      .then(res => {
+          console.log(' Post is Liked here - ',res)
+      })
+      toast.success(' Post is Liked  ')
+    }catch(error)
+    {
+      console.log(' Error While Liking Post is - ',error);
+      toast.error(' Something Went Wrong ')
+    }
+  }
+
+
+   const unlikepost = (id) => {
+    try{      
+      const config = {
+          headers : {
+              "Content-Type"  : "application/json",
+              'Authorization' : "Bearer " + localStorage.getItem('jwt')
+          }
+      }
+
+      axios.put('/unlikepost' , {
+        postId : id
+      },config)
+      .then(res => {
+          console.log(' Post is UnLiked here - ',res)
+      })
+      toast.success(' Post is UnLiked  ')
+    }catch(error)
+    {
+      console.log(' Error While Unliking Post is - ',error);
+      toast.error(' Something Went Wrong ')
+    }
+  }
+
+
   return (
     <>
         <div style = {{marginTop:'90px',display:'flex',flexWrap:'wrap',padding:'3%',justifyContent:'space-between'}}> 
@@ -51,7 +101,7 @@ const Home = () => {
                                        <Stack mt='6' spacing='3'>
                                          
                                  <Text>  Title - {item.title} </Text>
-                                 <Text>  Desc - {item.body} </Text>
+                                 <Text>  Desc -  {item.body} </Text>
                                    
                                    </Stack>
                              </CardBody>
@@ -59,12 +109,19 @@ const Home = () => {
                                  <Divider />
    
                       <CardFooter>
-                            <ButtonGroup spacing='2'>
-                                <Button variant='solid' colorScheme='blue'> Like 
-                                </Button>
+                        <ButtonGroup spacing='2'>
+                            {/* <span> <AiFillHeart  style = {{color:'red',fontSize:'32px'}} /> </span> */}
+
+                          {item.likes.includes(state._id) ? <>
+                            <Button variant = 'solid' colorScheme='blue'  onClick = {() => unlikepost(item?._id)}> DisLike  </Button>
+                          </> : 
+                          <>
+                            <Button variant = 'solid' co lorScheme='blue'  onClick = {() => likepost(item?._id)} >  { item.likes.length}  Like  </Button>
+                          </>}
+
                                       
                                 <Stack spacing={3}>
-                                    <Input  variant= 'flushed'  placeholder='Write Comment....' 
+                                    <Input  variant = 'flushed'  placeholder='Write Comment....' 
                                     size='sm' />
                                 </Stack>
                           </ButtonGroup>
@@ -73,7 +130,6 @@ const Home = () => {
                       </>
                     )
                    })}
-               
         </div>
     </>
   )
