@@ -80,12 +80,37 @@ const Home = () => {
     }
   }
 
+  
+  const makecomment = (text,postId) => {
+    try{      
+      const config = {
+          headers : {
+              "Content-Type"  : "application/json",
+              'Authorization' : "Bearer " + localStorage.getItem('jwt')
+          }
+      }
+
+          axios.put('/comment' ,{
+          postId,
+          text
+        },config)
+        .then(response => {  
+          console.log(' Comment  resp is  ' ,response)
+        })
+        toast.success(' Commented  It Here  .... ')
+      
+    }catch(error)
+      {
+          console.log(' err  while  Comment  is -',error );
+          toast.error(' Something Went Wrong')
+      }
+  }
+
 
   return (
     <>
         <div style = {{marginTop:'90px',display:'flex',flexWrap:'wrap',padding:'3%',justifyContent:'space-between'}}> 
               
-
                    {data?.map(item => {
                     return(
                       <>
@@ -120,10 +145,22 @@ const Home = () => {
                           </>}
 
                                       
-                                <Stack spacing={3}>
+                                <Stack spacing = {3}>
+                                    {item?.comments?.map(record => {
+                                      return(
+                                        <span>  <b>{record?.text} - By {state?.name} </b> </span>
+                                      )}
+                                      )}
+                                  <form onSubmit = {(e) => 
+                                   {
+                                     e.preventDefault();
+                                     makecomment(e.target[0].value,item._id)
+                                   }}>
                                     <Input  variant = 'flushed'  placeholder='Write Comment....' 
                                     size='sm' />
+                                    </form>
                                 </Stack>
+                                
                           </ButtonGroup>
                       </CardFooter>
                              </Card>

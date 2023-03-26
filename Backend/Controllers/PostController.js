@@ -102,5 +102,33 @@ const unlikepost = asyncHandler(async(req,res) => {
         }
 })
 
+const comment = asyncHandler(async(req,res) => {
 
-module.exports = {  createpost ,allposts ,mypost , likepost , unlikepost};
+    try{
+        const comment = {
+            text : req.body.text,
+            postedBy: req.user._id
+        }
+
+         Post.findByIdAndUpdate(req.body.postId ,{
+            $push : {comments:comment}
+        },{
+            new: true
+        })
+        .populate("comments.postedBy" ,"_id name")
+        .populate("postedBy","_id name")
+        .then((res) => {
+            res.json(res)
+        }).catch((err) => {
+            return res.status(422).json({error: err})
+        })
+
+    }catch(error)
+    { 
+        console.log(' UnLike Error are--',err);
+        res.send({err : ' UnLike  error occured in '})
+    }
+})
+
+
+module.exports = {  createpost ,allposts ,mypost , likepost , unlikepost , comment};
