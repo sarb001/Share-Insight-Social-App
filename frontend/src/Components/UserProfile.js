@@ -1,6 +1,6 @@
 import React, { useContext, useEffect , useState } from 'react'
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { UserContext } from '../App';
 
 
@@ -48,7 +48,9 @@ const UserProfile = () => {
                                                         </div>
 
                                                         <div className = "profile-data" style = {{textAlign:'center',alignSelf:'center'}}>
-                                                            <span> Name is - {userprofile?.item.name} </span>
+                                                        <span>   
+                                                            Name is - {userprofile?.item.name} 
+                                                             </span>
                                                             <div> 
                                                                 <span>  {userprofile?.posts.length}  posts </span>
                                                                 <span>  40  followers </span>

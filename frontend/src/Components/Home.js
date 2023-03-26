@@ -6,7 +6,7 @@ import { UserContext } from '../App';
 import axios from 'axios';
 import  { AiFillHeart , AiFillDelete } from 'react-icons/ai';
 import { toast } from 'react-toastify';
-
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -147,7 +147,10 @@ const Home = () => {
 
                              <CardBody>
                                  <span style = {{display:'grid',gridTemplateColumns:'1fr 20px'}}>
-                                  <Heading size='md'>  {item?.postedBy?.name} </Heading>
+                                  <Heading size='md'>    
+                                     <Link to = {item?.postedBy?._id !== state._id ? "/profile/" + item?.postedBy?._id : "/profile/"}>
+                                       {item?.postedBy?.name} </Link>        
+                                   </Heading>
                                       <span style = {{fontSize:'23px',backgroundColor:'wheat',alignSelf:'center',display:'flex'}}> 
                                         { item?.postedBy?._id === state?._id && 
                                           <AiFillDelete  onClick = {() => deletepost(item?._id)} /> 
