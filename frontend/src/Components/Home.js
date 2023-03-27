@@ -179,10 +179,10 @@ const Home = () => {
                             {/* <span> <AiFillHeart  style = {{color:'red',fontSize:'32px'}} /> </span> */}
 
                           {item.likes.includes(state._id) ? <>
-                            <Button variant = 'solid' colorScheme='blue'  onClick = {() => unlikepost(item?._id)}> DisLike  </Button>
+                            <Button variant = 'solid' colorScheme = 'blue'  onClick = {() => unlikepost(item?._id)}> DisLike  </Button>
                           </> : 
                           <>
-                            <Button variant = 'solid' co lorScheme='blue'  onClick = {() => likepost(item?._id)} >  { item.likes.length}  Like  </Button>
+                            <Button variant = 'solid' colorScheme = 'blue'  onClick = {() => likepost(item?._id)} >  { item.likes.length}  Like  </Button>
                           </>}
 
                                       

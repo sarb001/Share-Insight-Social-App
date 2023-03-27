@@ -53,7 +53,7 @@ const CreatePost = () => {
     const data = new FormData();
 
       data.append("file",image)
-      data.append("upload_preset","Let's-Shop-it")
+      data.append("upload_preset","Insight-Social-Media-App")
       data.append("cloud_name" ,"damnzg3hr")
 
      await axios.post('https://api.cloudinary.com/v1_1/damnzg3hr/image/upload',data)
@@ -61,6 +61,7 @@ const CreatePost = () => {
           console.log('Image is -- ',res.data.url);
           seturl(res.data.url)
         }).catch((err) => {
+          toast.error(' Error While Uploading Image ')
           console.log('Image Error  -- ',err);
      })
 
