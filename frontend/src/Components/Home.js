@@ -26,7 +26,7 @@ const Home = () => {
 
       //  setloading(true);
        axios.get('/allposts' , config)
-       .then(res => {  console.log(' Home All Posts ',res)
+       .then(res => {  console.log(' In the Home Component ',res)
         setdata(res.data.posts)
         // setloading(false);
        })
