@@ -4,6 +4,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
 
+const sgmail = require('@sendgrid/mail');
+sgmail.setApiKey(process.env.SENDGRID_API_KEY);
+
+console.log('API key is here -- ',process.env.SENDGRID_API_KEY);
+
 
 const registerUser =  asyncHandler(async(req,res) => {
         try
@@ -28,6 +33,21 @@ const registerUser =  asyncHandler(async(req,res) => {
                 name :name,
             })
 
+            const msg = {
+                to: user.email,
+                from: 'sarbbsandhu555@gmail.com', 
+                subject: 'Checking Mail now',
+                text: 'and easy to do anywhere, even with Node.js',
+                html: '<strong> Welcome to the Mailer </strong>',
+                }
+
+                  sgmail.send(msg).then(() => 
+                        { 
+                  console.log(' Email Sent hai ')
+                }).catch((error) => {
+                  console.error(error)
+                })
+
             if(user){
                 res.status(201).json({
                     _id : user._id,
@@ -35,6 +55,7 @@ const registerUser =  asyncHandler(async(req,res) => {
                     password: user.password,
                     name :user.name,
                 })
+      
             }else
             {
                 res.status(400).json({error : ' Not Able to  Create User '})
