@@ -16,9 +16,9 @@ app.use('/' ,UserRoutes);
 app.use('/' ,UserCreateRoutes);
 app.use('/' ,UsersRoutes);
 
-
 mongoose.connect(Mongodb_url);
 mongoose.set('strictQuery',false);
+
 mongoose.connection.on('connected' , () => {
     console.log('Connected to Mongo DB');
 })

@@ -8,7 +8,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const registerUser =  asyncHandler(async(req,res) => {
         try
         {
-            const { name,email ,password  } = req.body;
+            const { name,email ,password ,pic} = req.body;
             console.log(' data in Backend is - ',name,email,password)
             if(!email || !password || !name ){
                     console.log('Error for data is - ',{email,name,password});
@@ -26,6 +26,7 @@ const registerUser =  asyncHandler(async(req,res) => {
                 email :email,
                 password : hashpass,
                 name :name,
+                pic : pic
             })
 
             if(user){
@@ -34,6 +35,7 @@ const registerUser =  asyncHandler(async(req,res) => {
                     email : user.email,
                     password: user.password,
                     name :user.name,
+                    pic : user.pic
                 })
             }else
             {

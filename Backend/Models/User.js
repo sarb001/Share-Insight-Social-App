@@ -14,10 +14,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         required : true 
     },
-    // pic:{
-    //     type:String,
-    //     default : "https://res.cloudinary.com/damnzg3hr/image/upload/v1678509086/dy1nibu4xqdqafijnl3k.jpg"
-    // },
+    pic:{
+        type:String,
+        default : "https://res.cloudinary.com/damnzg3hr/image/upload/v1679960236/ByDefault_ar1d6m.jpg"
+    },
     followers : [{type:ObjectId,ref :"User"}],
     following : [{type:ObjectId,ref :"User"}],
 })
