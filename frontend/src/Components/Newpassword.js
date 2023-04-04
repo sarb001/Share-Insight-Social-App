@@ -1,24 +1,23 @@
-
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios';
 import  { toast } from  'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../App';
 
+const Newpassword = () => {
 
-const Reset = () => {
-
-const [email,setemail] = useState("");
- const navigate = useNavigate("");
-
- const {state,dispatch} = useContext(UserContext);
+    const [password,setpassword] = useState("")
+     const navigate  = useNavigate("");
+     const { token } = useParams();
+  
+     const {state,dispatch} = useContext(UserContext);
 
   const  logindata = async(e) => {
     e.preventDefault();
 
-    if(!email){
+    if(!password){
       toast.warn(' Please Fill all the Fields ')
     }
     try
@@ -27,14 +26,15 @@ const [email,setemail] = useState("");
         headers : { 'Content-type' : 'application/json' }, 
       }
 
-      const {data} = await  axios.post('/reset-password', {
-        email},config);
-        toast.success(' Check your Email ')
+      const {data} = await  axios.post('/new-password', {
+        password , token},config);
+        
+        toast.success(' Password Changed Now  ')
         navigate('/login');
 
     }catch(error)
      {
-       toast.error(' Wrong Credentialssss ')
+       toast.error(' Wrong Credentials ')
      }
   }
 
@@ -55,25 +55,22 @@ const [email,setemail] = useState("");
                                 <div className="main-login-form">
 
                                       <form id = "main-form"  onSubmit = {logindata}>
-
-                                        <span style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'8% 8%'}}> 
-                                         <label> Reset Email  </label>
-                                        <input type = "email"      placeholder = 'Enter your Email... '   
-                                         value = {email} onChange = {(e) => setemail(e.target.value)}  required/>
+                                  
+                                        <span  style = {{display:'grid',gridTemplateColumns:'1fr 1fr',padding:'8% 8%'}}>  <label> Password </label>
+                                        <input type = "password"   placeholder = 'Enter your New Password... ' 
+                                         value = {password} onChange = {(e) => setpassword(e.target.value)}  required/>
                                         </span>
-
-                                          <span id = "login-btn"> 
-                                        <button style = {{backgroundColor:'black',padding:'3% 5%',color:'white'}}>  
-                                             Reset Password 
-                                         </button> </span>
+                                        
+                                        <span id = "login-btn"> <button style = {{backgroundColor:'black',padding:'3% 5%',color:'white'}}>  
+                                        Reset  New Password   </button> </span>
                                       </form>
                                 </div>
                         </div>
                 </div>
             </div>
     </div>
+
   )
-  }
+}
 
-
-export default Reset
+export default Newpassword

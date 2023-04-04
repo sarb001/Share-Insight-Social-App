@@ -72,8 +72,13 @@ const Login = () => {
                                         
                                         <span id = "login-btn"> <button style = {{backgroundColor:'black',padding:'3% 5%',color:'white'}}>  
                                         Login Here </button> </span>
-                                        <span id = "signup-link"> 
-                                          <Link to = "/signup"> Create New Account ? SignUp </Link> </span>
+                              <span id = "signup-link"> 
+                                <Link to = "/signup"> Create New Account ? SignUp </Link> 
+                              </span>
+
+                              <span id = "forget-password-link"> 
+                                <Link to = "/reset"> Forget Password ? </Link> 
+                              </span>
                                       </form>
                                 </div>
                         </div>

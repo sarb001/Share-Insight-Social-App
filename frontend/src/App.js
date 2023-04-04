@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import UserProfile from './Components/UserProfile';
 import Reset from './Components/Reset';
 import { useLocation } from 'react-router-dom';
+import Newpassword from './Components/Newpassword';
 
 export const UserContext = createContext();
 
@@ -41,11 +42,14 @@ const Routing = () => {
       <Routes>
          <Route exact path = "/"   element = {<Home />}  >  </Route>
          <Route  path = "/signup"  element = {<Signup />} >  </Route>
+
          <Route  path = "/login"   element = {<Login />}>     </Route>
-         <Route  path = "/reset"   element = {<Reset />}>     </Route>
-         <Route path = "/profile"  element = {<Profile />}>    </Route>
+
+         <Route exact path = "/reset"     element = {<Reset />}>     </Route>
+         <Route  path = "/reset/:token"   element = {<Newpassword />}>     </Route>
+         <Route path = "/profile"         element = {<Profile />}>    </Route>
          <Route path = "/profile/:userid"  element = {<UserProfile />}>    </Route>
-         <Route path = "/createpost"  element = {<CreatePost />}>    </Route>
+         <Route path = "/createpost"        element = {<CreatePost />}>    </Route>
      </Routes>
    </>
   )

@@ -4,12 +4,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
 const crypto = require('crypto');
-
 const Mailgun = require('mailgun.js');
-
 const   DOMAIN = process.env.MAILGUN_DOMAIN;
 const  API_KEY = process.env.MAILGUN_API_KEY;
-
 const formData = require('form-data');
 const mailgun = new Mailgun(formData);
 
@@ -145,5 +142,26 @@ const resetpass =   asyncHandler(async(req,res) => {
     })
 })
 
+const newpass = asyncHandler(async(req,res) => {
+          const newPassword = req.body.password
+          const sentToken = req.body.token
+          User.findOne({resetToken: sentToken , expirToken :{$gt: Date.now()}})
+          .then(user => {
+                if(!user){
+                        return res.status(422).json({error:" Try again Session  Expired "})
+                }
+                bcrypt.hash(newPassword,12).then(hashpass => {
+                        user.password    = hashpass
+                        user.resetToken  = undefined
+                        user.expirToken  = undefined
+                        user.save().then((saveduser) => {
+                                res.json({message : " Password Updated Success "})
+                        })
+                }).catch(err => {
+                        console.log(err);
+                })
+          })
+})
 
-module.exports = { registerUser ,loginUser ,resetpass } 
+
+module.exports = { registerUser ,loginUser ,resetpass , newpass } 
