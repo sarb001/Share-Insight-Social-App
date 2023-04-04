@@ -2,7 +2,6 @@ const Post = require('../Models/Post');
 const  asyncHandler = require('express-async-handler');
 const JWT_SECRET = process.env.JWT_SECRET;
 
-
 const createpost = asyncHandler(async(req,res) => {
 
     try{

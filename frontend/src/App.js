@@ -11,11 +11,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { initialState, reducer } from './Components/Reducers/userReducer';
 import { useNavigate } from 'react-router-dom';
 import UserProfile from './Components/UserProfile';
+import Reset from './Components/Reset';
+import { useLocation } from 'react-router-dom';
 
 export const UserContext = createContext();
 
 const Routing = () => {
 
+
+   const location = useLocation();
    const navigate = useNavigate();
    const {state,dispatch} = useContext(UserContext);
 
@@ -26,7 +30,9 @@ const Routing = () => {
            dispatch({type:"USER",payload:user})
           //  navigate('/')
         }else{
-             navigate('/login')
+          if(!location.pathname.startsWith('/reset')){
+            navigate('/login')
+          }
         }
   },[])
 
@@ -36,6 +42,7 @@ const Routing = () => {
          <Route exact path = "/"   element = {<Home />}  >  </Route>
          <Route  path = "/signup"  element = {<Signup />} >  </Route>
          <Route  path = "/login"   element = {<Login />}>     </Route>
+         <Route  path = "/reset"   element = {<Reset />}>     </Route>
          <Route path = "/profile"  element = {<Profile />}>    </Route>
          <Route path = "/profile/:userid"  element = {<UserProfile />}>    </Route>
          <Route path = "/createpost"  element = {<CreatePost />}>    </Route>

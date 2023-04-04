@@ -3,14 +3,20 @@ const  asyncHandler = require('express-async-handler');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
+const crypto = require('crypto');
 
-const sgmail = require('@sendgrid/mail');
-sgmail.setApiKey(process.env.SENDGRID_API_KEY);
+const Mailgun = require('mailgun.js');
 
-console.log('API key is here -- ',process.env.SENDGRID_API_KEY);
+const   DOMAIN = process.env.MAILGUN_DOMAIN;
+const  API_KEY = process.env.MAILGUN_API_KEY;
 
+const formData = require('form-data');
+const mailgun = new Mailgun(formData);
+
+const client = mailgun.client({username: "api",key :API_KEY});
 
 const registerUser =  asyncHandler(async(req,res) => {
+        
         try
         {
             const { name,email ,password  } = req.body;
@@ -33,20 +39,18 @@ const registerUser =  asyncHandler(async(req,res) => {
                 name :name,
             })
 
-            const msg = {
-                to: user.email,
-                from: 'sarbbsandhu555@gmail.com', 
-                subject: 'Checking Mail now',
-                text: 'and easy to do anywhere, even with Node.js',
-                html: '<strong> Welcome to the Mailer </strong>',
-                }
+            const messagedata = {
+                from : 'sarbbsandhu555@gmail.com',
+                to : user.email,
+                subject : "Hello I'min the MainCity ",
+                text : "Testing Testng....."
+                };
 
-                  sgmail.send(msg).then(() => 
-                        { 
-                  console.log(' Email Sent hai ')
-                }).catch((error) => {
-                  console.error(error)
-                })
+                client.messages.create(DOMAIN,messagedata).then((res) => {
+                        console.log(res);
+                }).catch((err) => {
+                        console.log(err);
+                });
 
             if(user){
                 res.status(201).json({
@@ -74,7 +78,7 @@ const loginUser =  asyncHandler(async(req,res) => {
      {
         const {email, password} = req.body;
 
-        if(!email || !password){W
+        if(!email || !password){
             return res.status(422).json({error: " Please Add Email or Password "})
         }
         User.findOne({email:email})
@@ -105,5 +109,41 @@ const loginUser =  asyncHandler(async(req,res) => {
 })
 
 
+const resetpass =   asyncHandler(async(req,res) => {
+        crypto.randomBytes(32,(err,buffer) => {
+        if(err){
+                console.log(err);
+        }
+        const token = buffer.toString("hex")
+        User.findOne({email : req.body.email})
+        .then(user => {
+                if(!user){
+                        return res.status(422).json({error:" Email Don't exist "})
+                }
+                user.resetToken = token
+                user.expirToken = Date.now() + 3600000
+                user.save().then((result) => {
 
-module.exports = { registerUser ,loginUser } 
+                                 const messagedata = {
+                                from : 'sarbbsandhu555@gmail.com',
+                                to : user.email,
+                                subject : " Password Reset. ",
+                                html : `  
+                                <p>   Youu request for pass here is 
+                                <h1> Click in this <a href = "http://localhost:3000/reset/${token}"> Link </a> to Reset  
+                                </h1></p> `
+                                };
+                
+                                client.messages.create(DOMAIN,messagedata).then((res) => {
+                                        console.log(res);
+                                }).catch((err) => {
+                                        console.log(err);
+                                });
+
+                })
+        })
+    })
+})
+
+
+module.exports = { registerUser ,loginUser ,resetpass } 
