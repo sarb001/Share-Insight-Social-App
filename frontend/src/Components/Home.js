@@ -143,7 +143,8 @@ const Home = () => {
                    {data?.map(item => {
                     return(
                       <>
-                             <Card maxW = 'sm' key = {item._id}>
+                      <div style = {{marginBottom:'3%'}}>
+                             <Card maxW = 'sm' key = {item._id} style = {{boxShadow:'1px 2px 2px 3px'}}>
 
                              <CardBody>
                                  <span style = {{display:'grid',gridTemplateColumns:'1fr 20px'}}>
@@ -171,13 +172,10 @@ const Home = () => {
                                    
                                    </Stack>
                              </CardBody>
-                             
                                  <Divider />
    
                       <CardFooter>
                         <ButtonGroup spacing='2'>
-                            {/* <span> <AiFillHeart  style = {{color:'red',fontSize:'32px'}} /> </span> */}
-
                           {item.likes.includes(state._id) ? <>
                             <Button variant = 'solid' colorScheme = 'blue'  onClick = {() => unlikepost(item?._id)}> DisLike  </Button>
                           </> : 
@@ -205,6 +203,7 @@ const Home = () => {
                           </ButtonGroup>
                       </CardFooter>
                              </Card>
+                      </div>
                       </>
                     )
                    })}

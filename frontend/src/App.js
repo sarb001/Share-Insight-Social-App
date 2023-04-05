@@ -60,7 +60,7 @@ function App() {
   const [state,dispatch] = useReducer(reducer,initialState);
 
   return (
-    <div className="App">
+    <div className = "App">
       <UserContext.Provider value = {{state,dispatch}}>
         <ToastContainer autoClose = {1000} />
            <Navbar  />

@@ -38,7 +38,7 @@ const allposts = asyncHandler(async(req,res) => {
             res.json({posts})
         })
         .catch(err => {
-            console.log(err)
+            console.log('Error in  --',err)
         })
     }catch(error)
     {

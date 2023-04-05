@@ -138,17 +138,17 @@ const UserProfile = () => {
                                                         </div>
                                 </div>
 
-                    <div className="second-side-profile" style = {{display:'flex',flexWrap:'wrap',justifyContent:'space-evenly',paddingTop:'40px'}}> 
-                                            {userprofile?.posts.map((item) => {
-                                                 return (
-                                                    <>
-                                                     <span> 
-                                                        <img src = {item?.photo} style = {{width:'38%'}} />
-                                                     </span>
-                                                    </>
-                                                 )
-                                            })}
-                    </div>
+                                <div className = "second-side-profile" style = {{display:'flex',flexWrap:'wrap',justifyContent:'space-evenly',paddingTop:'40px'}}> 
+                                                        {userprofile?.posts.map((item) => {
+                                                            return (
+                                                                <>
+                                                                <span style  = {{margin:'2%'}}> 
+                                                                    <img src = {item?.photo} style = {{width:'40%'}} />
+                                                                </span>
+                                                                </>
+                                                            )
+                                                        })}
+                                </div>
         </div>
           </div>
     </div>
