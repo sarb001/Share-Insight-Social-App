@@ -14,11 +14,10 @@ const Profile = () => {
         'Authorization' : "Bearer " + localStorage.getItem('jwt')
       }
     }
-      //  setloading(true)
+   
     axios.get('/mypost',config)
     .then(res => { console.log(' My Post is---',res.data.mypost)
       setpics(res.data.mypost)
-      //  setloading(false)
     })
 },[])
 

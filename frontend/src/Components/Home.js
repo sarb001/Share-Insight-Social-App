@@ -12,9 +12,7 @@ const Home = () => {
 
   const [data,setdata] = useState([]);
   const {state,dispatch} = useContext(UserContext)
-  // const [loading,setloading] = useState(false);
 
-  
    useEffect(() => {
 
      const config = {
@@ -24,11 +22,9 @@ const Home = () => {
        }
      }
 
-      //  setloading(true);
        axios.get('/allposts' , config)
        .then(res => {  console.log(res)
         setdata(res.data.posts)
-        // setloading(false);
        })
    },[])
 
@@ -95,7 +91,7 @@ const Home = () => {
           text
         },config)
         .then(response => {  
-                    res.status({response})
+                  response.status({response})
         })
         toast.success(' Commented  It Here  .... ')
       
