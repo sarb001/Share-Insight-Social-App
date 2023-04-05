@@ -3,14 +3,11 @@ const  asyncHandler = require('express-async-handler');
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const createpost = asyncHandler(async(req,res) => {
-
     try{
         const {title,body,photo} = req.body;
         if(!title || !body || !photo){
             return res.status(422).json({error : ' Please Add All the Fields '})
         }
-        console.log(' User Requested or Logged User is - ',req.user);
-
         const post = new Post({
             title,
             body,
@@ -21,11 +18,10 @@ const createpost = asyncHandler(async(req,res) => {
             res.json({post:result})
         })
         .catch(err => {
-            console.log(err);
+             res.status({err})
         })
     }catch(error)
     {
-        console.log(error);
         res.status(422).json(' Something Worng ')
     }
 })
@@ -38,11 +34,10 @@ const allposts = asyncHandler(async(req,res) => {
             res.json({posts})
         })
         .catch(err => {
-            console.log('Error in  --',err)
+            res.status({err})
         })
     }catch(error)
     {
-        console.log(error);
         res.status(422).json(' Something Worng ')
     }
 })
@@ -55,10 +50,10 @@ const mypost = asyncHandler(async(req,res) => {
            res.json({mypost})
         })
         .catch(err => {
-           console.log(err)
+            res.status({err})
         })
     }catch(error){
-        console.log(error);
+        
         res.status(422).json(' Something Worng ')
     }
 })
@@ -77,7 +72,6 @@ const likepost = asyncHandler(async(req,res) => {
                 
             }catch(error)
             { 
-                console.log('Like Error are--',err);
                 res.send({err : ' Like  error occured in '})
             }
 })
@@ -96,7 +90,6 @@ const unlikepost = asyncHandler(async(req,res) => {
             })
         }catch(error)
         { 
-            console.log(' UnLike Error are--',err);
             res.send({err : ' UnLike  error occured in '})
         }
 })
@@ -124,7 +117,6 @@ const comment = asyncHandler(async(req,res) => {
 
     }catch(error)
     { 
-        console.log(' UnLike Error are--',err);
         res.send({err : ' UnLike  error occured in '})
     }
 })
@@ -136,14 +128,14 @@ const deletepost = asyncHandler(async(req,res) => {
     Post.findOne({_id : req.params.postId})
    .populate("postedBy","_id")
    .then((item) => {
-              console.log(' item is  ',item);
+          
               if(item.postedBy._id.toString() === req.user._id.toString()){
                    item.deleteOne()
                    .then((res) => {
                        res.status(200).json({message : ' Successfully Deleted '})
-                       console.log('item DDDDDelted')
+                     
                   }).catch(err => {
-                      console.log(err)
+                      res.status({err})
                   })
               }
       })

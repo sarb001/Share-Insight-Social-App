@@ -26,10 +26,10 @@ const UserProfile = () => {
   
        const getout = await axios.get(`/user/${userid}`,config)
       .then(res => {
-        console.log(' Res inUserProfile is - -',res.data)
+     
         setuserprofile(res.data);
        }).catch((err) => {
-         console.log('Error in Userprofile is - ',err);
+         console.log(err);
        })
     }
 
@@ -46,7 +46,7 @@ const UserProfile = () => {
        },config)
        .then(res => 
         {
-          console.log(' Follow user Front is --',res.data);
+       
           dispatch({type:"UPDATE",payload : {following : res.data.following,followers : res.data.followers}})
           localStorage.setItem("user",JSON.stringify(res.data))
           toast.success(' User has been Followed ')
@@ -61,7 +61,7 @@ const UserProfile = () => {
           })
           setshowfollower(false);
         }).catch(err => {
-          console.log('Error in Follow user',err);
+          console.log(err);
         })
     }
 
@@ -80,7 +80,6 @@ const UserProfile = () => {
        },config)
        .then(res => 
         {
-          console.log(' Followuser Front is --',res.data);
           dispatch({type:"UPDATE",payload : {following : res.data.following,followers : res.data.followers}})
           toast.success(' User has been Unfollowed ')
           setuserprofile((prevstate) => {
@@ -96,7 +95,7 @@ const UserProfile = () => {
          setshowfollower(true);
   
         }).catch(err => {
-          console.log('Error in Unfollow user',err);
+          console.log(err);
         })
 
     }

@@ -26,7 +26,7 @@ const Home = () => {
 
       //  setloading(true);
        axios.get('/allposts' , config)
-       .then(res => {  console.log(' Home All Posts ',res)
+       .then(res => {  console.log(res)
         setdata(res.data.posts)
         // setloading(false);
        })
@@ -47,12 +47,11 @@ const Home = () => {
         postId : id
       },config)
       .then(res => {
-          console.log(' Post is Liked here - ',res)
+         res.status({res})
       })
       toast.success(' Post is Liked  ')
     }catch(error)
     {
-      console.log(' Error While Liking Post is - ',error);
       toast.error(' Something Went Wrong ')
     }
   }
@@ -71,12 +70,12 @@ const Home = () => {
         postId : id
       },config)
       .then(res => {
-          console.log(' Post is UnLiked here - ',res)
+         res.status({res})
       })
       toast.success(' Post is UnLiked  ')
     }catch(error)
     {
-      console.log(' Error While Unliking Post is - ',error);
+
       toast.error(' Something Went Wrong ')
     }
   }
@@ -96,13 +95,12 @@ const Home = () => {
           text
         },config)
         .then(response => {  
-          console.log(' Comment  resp is  ' ,response)
+                    res.status({response})
         })
         toast.success(' Commented  It Here  .... ')
       
     }catch(error)
       {
-          console.log(' err  while  Comment  is -',error );
           toast.error(' Something Went Wrong')
       }
   }
@@ -119,7 +117,6 @@ const Home = () => {
 
           axios.delete(`/deletepost/${postid}`,config)
          .then(result => {  
-          console.log(' Delete data Responsee  is -' ,result)
           const newdata = data.filter(item => {      
             return item._id !== result._id
           })
@@ -129,7 +126,6 @@ const Home = () => {
       
     }catch(error)
       {
-          console.log(' err  while Unlike  post is -',error );
           toast.error(' Something Went Wrong')
       }
   }
@@ -162,7 +158,7 @@ const Home = () => {
                                 
                                <Image
                                  src = {item?.photo}
-                                 alt='Green double couch with wooden legs'
+                                 alt = 'Green double couch with wooden legs'
                                  borderRadius='lg'
                                />
                                        <Stack mt='6' spacing='3'>

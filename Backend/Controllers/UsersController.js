@@ -14,14 +14,13 @@ const getuser   = asyncHandler(async(req,res) => {
              .populate("postedBy","_id name")
              .then((posts) => {
                     res.status(200).json({item,posts})
-                    console.log(' Res & Posts arrre - ',{item,posts})
              }).catch(err => {
-                console.log(err);
+                res.status({err})
              })
          })
     }catch(err)
     {
-        console.log(err)
+        res.status({err})
     }
 })
 
@@ -42,10 +41,9 @@ const followuser = asyncHandler(async(req,res) => {
         })
     }catch(err)
     {
-        console.log('Err in Backend in Followuser',err)
+        res.status({err})
     }
 })    
-
 
 const unfollowuser = asyncHandler(async(req,res) => {
     try{
@@ -64,7 +62,7 @@ const unfollowuser = asyncHandler(async(req,res) => {
         })
     }catch(err)
     {
-        console.log('Err in Backend in UnFollowuser ',err)
+        res.status({err})
     } 
 })    
 

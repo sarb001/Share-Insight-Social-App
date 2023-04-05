@@ -17,7 +17,7 @@ const Navbar = () => {
         <li style = {{listStyleType:'none'}}> <Link  to = "/profile"> Profile  </Link>    </li>,
         <li style = {{listStyleType:'none'}}> <Link  to = "/createpost"> Create Post </Link>    </li>,
         <li   style = {{listStyleType:'none'}}
-          onClick = {() =>    { localStorage.clear();   dispatch({type:"CLEAR"}); navigate("/login") }}> 
+          onClick = {() =>  { localStorage.clear();   dispatch({type:"CLEAR"}); navigate("/login") }}> 
           Logout   </li>
       ]
     }else{
