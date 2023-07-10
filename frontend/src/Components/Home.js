@@ -7,6 +7,8 @@ import axios from 'axios';
 import  { AiFillHeart , AiFillDelete } from 'react-icons/ai';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { FcLike , FcDislike } from 'react-icons/fc';
+
 
 const Home = () => {
 
@@ -178,14 +180,19 @@ const Home = () => {
                         <ButtonGroup spacing='2'>
 
                           {item.likes.includes(state._id) ? <>
-                            <Button variant = 'solid' colorScheme = 'blue'  onClick = {() => unlikepost(item?._id)}> DisLike  </Button>
+                            <Button variant = 'solid' colorScheme = 'blue'  onClick = {() => unlikepost(item?._id)}> 
+                                  <div>  DisLike Now  </div>
+                            </Button>
                           </> : 
                           <>
-                            <Button variant = 'solid' colorScheme = 'blue'  onClick = {() => likepost(item?._id)} >  { item.likes.length}  Like  </Button>
-                          </>}
-
+                            <Button variant = 'solid' colorScheme = 'blue'  onClick = {() => likepost(item?._id)} >  
+                            { item.likes.length == 0 ? "Like Now" : ""} 
+                          </Button>
+                          </>
+                          }
                                       
                                 <Stack spacing = {3}>
+                                   <div> <b> {item.likes.length} </b>  Liked this  </div>
                                     {item?.comments?.map(record => {
                                       return(
                                         <span>  <b>{record?.text} - By {state?.name} </b> </span>
