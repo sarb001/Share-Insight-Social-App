@@ -6,6 +6,7 @@ import  { toast } from  'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../App';
 
+
 const Login = () => {
 
   const [email,setemail] = useState("");
@@ -42,6 +43,11 @@ const Login = () => {
      }
   }
 
+  const handletestlogin = () =>{
+    setemail('testuser@gmail.com');
+    setpassword('testuser');
+  }
+
   return (
     
     <div> 
@@ -72,6 +78,11 @@ const Login = () => {
                                         
                                         <span id = "login-btn"> <button style = {{backgroundColor:'black',padding:'3% 5%',color:'white'}}>  
                                         Login Here </button> </span>
+
+                                        <span id = "login-testing-user"> 
+                                        <button   onClick = {handletestlogin}  style = {{backgroundColor:'black',padding:'3% 5%',color:'white'}}>  
+                                        Login as Test User  </button> </span>
+
                                         <span id = "signup-link"> 
                                           <Link to = "/signup"> Create New Account ? SignUp </Link> </span>
                                       </form>

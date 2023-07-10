@@ -176,7 +176,6 @@ const Home = () => {
    
                       <CardFooter>
                         <ButtonGroup spacing='2'>
-                            {/* <span> <AiFillHeart  style = {{color:'red',fontSize:'32px'}} /> </span> */}
 
                           {item.likes.includes(state._id) ? <>
                             <Button variant = 'solid' colorScheme = 'blue'  onClick = {() => unlikepost(item?._id)}> DisLike  </Button>

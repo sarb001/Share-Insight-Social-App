@@ -14,16 +14,16 @@ const Navbar = () => {
   const renderList = () => {
     if(state){
       return [
-        <li> <Link to = "/profile"> Profile  </Link>    </li>,
-        <li> <Link to = "/createpost"> Create Post </Link>    </li>,
-        <li   
+        <li style = {{listStyleType:'none'}}> <Link to = "/profile"> Profile  </Link>    </li>,
+        <li style = {{listStyleType:'none'}}> <Link to = "/createpost"> Create Post </Link>    </li>,
+        <li  style =  {{listStyleType:'none'}}
           onClick = {() =>    { localStorage.clear();   dispatch({type:"CLEAR"}); navigate("/login") }}> 
           Logout   </li>
       ]
     }else{
        return [
-        <li> <Link to = "/login"> Login </Link>  </li>,
-        <li> <Link to = "/signup"> Signup </Link>  </li>
+        <li style = {{listStyleType:'none'}}> <Link to = "/login"> Login </Link>  </li>,
+        <li style = {{listStyleType:'none'}}> <Link to = "/signup"> Signup </Link>  </li>
        ]
     }
   }

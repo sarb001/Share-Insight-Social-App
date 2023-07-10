@@ -13,7 +13,7 @@ const UserProfile = () => {
 
     useEffect(() => {
         loadata();
-    })
+    },[userid])
   
     const loadata = async() => 
     {
@@ -138,14 +138,13 @@ const UserProfile = () => {
                                                         </div>
                                 </div>
 
-                    <div className="second-side-profile" style = {{display:'flex',flexWrap:'wrap',justifyContent:'space-evenly',paddingTop:'40px'}}> 
+                    <div className="second-side-profile" style = {{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))',justifyItems:'center',paddingTop:'40px'}}> 
                                             {userprofile?.posts.map((item) => {
                                                  return (
-                                                    <>
-                                                     <span> 
-                                                        <img src = {item?.photo} style = {{width:'38%'}} />
-                                                     </span>
-                                                    </>
+                                                     <div style = {{margin:'20px'}}> 
+                                                        <img src = {item?.photo} style = {{width:'100%'}} />
+                                                     </div>
+                                                    
                                                  )
                                             })}
                     </div>
