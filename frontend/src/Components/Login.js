@@ -30,7 +30,7 @@ const Login = () => {
       const {data} = await  axios.post('/login', {
         email ,password},config);
         
-        console.log(' Dataa is - ',data)
+        // console.log(' Dataa is - ',data)
         localStorage.setItem('jwt',data.token)
         localStorage.setItem('user',JSON.stringify(data.user))
         dispatch({type:"USER",payload : data.user})

@@ -52,7 +52,7 @@ const Home = () => {
       toast.success(' Post is Liked  ')
     }catch(error)
     {
-      console.log(' Error While Liking Post is - ',error);
+      // console.log(' Error While Liking Post is - ',error);
       toast.error(' Something Went Wrong ')
     }
   }
@@ -76,7 +76,7 @@ const Home = () => {
       toast.success(' Post is UnLiked  ')
     }catch(error)
     {
-      console.log(' Error While Unliking Post is - ',error);
+      // console.log(' Error While Unliking Post is - ',error);
       toast.error(' Something Went Wrong ')
     }
   }
@@ -102,7 +102,7 @@ const Home = () => {
       
     }catch(error)
       {
-          console.log(' err  while  Comment  is -',error );
+          // console.log(' err  while  Comment  is -',error );
           toast.error(' Something Went Wrong')
       }
   }
@@ -119,7 +119,7 @@ const Home = () => {
 
           axios.delete(`/deletepost/${postid}`,config)
          .then(result => {  
-          console.log(' Delete data Responsee  is -' ,result)
+          // console.log(' Delete data Responsee  is -' ,result)
           const newdata = data.filter(item => {      
             return item._id !== result._id
           })
@@ -129,7 +129,7 @@ const Home = () => {
       
     }catch(error)
       {
-          console.log(' err  while Unlike  post is -',error );
+          // console.log(' err  while Unlike  post is -',error );
           toast.error(' Something Went Wrong')
       }
   }

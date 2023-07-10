@@ -22,8 +22,7 @@ const Profile = () => {
     })
 },[])
 
-  
-
+console.log('state in Profile is -',state);
 
   return (
     <div style = {{marginTop:'85px'}}>
@@ -40,24 +39,22 @@ const Profile = () => {
                     <div className = "profile-data" style = {{textAlign:'center',alignSelf:'center'}}>
                         <span> {state ? state.name : "Loading..."} </span>
                         <div> 
-                          <span> { pics ? pics.length : "No Photo present" } posts </span>
-                          <span>  {state? state.followers?.length : "0"  }  followers </span>
+                          <span>  { pics ? pics.length : "No Photo present" } posts </span>
+                          <span>  {state? state.followers?.length : "0"  }   followers </span>
                           <span>  {state? state.following?.length : "0"  }   following  </span>
                         </div>
                     </div>
                 </div>
 
-                <div className="second-side-profile" style = {{display:'flex',flexWrap:'wrap',justifyContent:'space-evenly',paddingTop:'40px'}}> 
+                <div className="second-side-profile" style = {{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))',
+                    justifyItems:'center', paddingTop:'40px'}}> 
                       {pics.map(item => {
                         return (
-                          <>
-                           <span style = {{margin:'1%'}}>
+                           <span style = {{margin:'5%'}}>
                                <img src = {item.photo} style = {{width:'160px',height:'160px',objectFit:'cover'}} />
                             </span>
-                          </>
                          )
                       })}
-
               </div>
           </div>
     </div>

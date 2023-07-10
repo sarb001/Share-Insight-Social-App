@@ -26,7 +26,7 @@ const UserProfile = () => {
   
        const getout = await axios.get(`/user/${userid}`,config)
       .then(res => {
-        console.log(' Res inUserProfile is - -',res.data)
+        // console.log(' Res inUserProfile is - -',res.data)
         setuserprofile(res.data);
        }).catch((err) => {
          console.log('Error in Userprofile is - ',err);
@@ -46,7 +46,7 @@ const UserProfile = () => {
        },config)
        .then(res => 
         {
-          console.log(' Follow user Front is --',res.data);
+          // console.log(' Follow user Front is --',res.data);
           dispatch({type:"UPDATE",payload : {following : res.data.following,followers : res.data.followers}})
           localStorage.setItem("user",JSON.stringify(res.data))
           toast.success(' User has been Followed ')
@@ -80,7 +80,7 @@ const UserProfile = () => {
        },config)
        .then(res => 
         {
-          console.log(' Followuser Front is --',res.data);
+          // console.log(' Followuser Front is --',res.data);
           dispatch({type:"UPDATE",payload : {following : res.data.following,followers : res.data.followers}})
           toast.success(' User has been Unfollowed ')
           setuserprofile((prevstate) => {
@@ -138,7 +138,8 @@ const UserProfile = () => {
                                                         </div>
                                 </div>
 
-                    <div className="second-side-profile" style = {{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))',justifyItems:'center',paddingTop:'40px'}}> 
+                    <div className="second-side-profile" style = {{display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))',
+                    justifyItems:'center', paddingTop:'40px'}}> 
                                             {userprofile?.posts.map((item) => {
                                                  return (
                                                      <div style = {{margin:'20px'}}> 

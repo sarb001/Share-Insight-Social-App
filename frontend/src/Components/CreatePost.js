@@ -58,11 +58,11 @@ const CreatePost = () => {
 
      await axios.post('https://api.cloudinary.com/v1_1/damnzg3hr/image/upload',data)
      .then((res) => {
-          console.log('Image is -- ',res.data.url);
+          // console.log('Image is -- ',res.data.url);
           seturl(res.data.url)
         }).catch((err) => {
           toast.error(' Error While Uploading Image ')
-          console.log('Image Error  -- ',err);
+          // console.log('Image Error  -- ',err);
      })
 
   }
