@@ -153,7 +153,7 @@ const Home = () => {
                                      <Link to = {item?.postedBy?._id !== state._id ? "/profile/" + item?.postedBy?._id : "/profile/"}>
                                        {item?.postedBy?.name} </Link>        
                                    </Heading>
-                                      <span style = {{fontSize:'23px',backgroundColor:'wheat',alignSelf:'center',display:'flex'}}> 
+                                      <span style = {{fontSize:'23px',backgroundColor:'grey',alignSelf:'center',display:'flex'}}> 
                                         { item?.postedBy?._id === state?._id && 
                                           <AiFillDelete  onClick = {() => deletepost(item?._id)} /> 
                                         }
@@ -193,14 +193,11 @@ const Home = () => {
                                       
                                 <Stack spacing = {3}>
                                    <div> <b> {item.likes.length} </b>  Liked this  </div>
-                                    {item?.comments?.map(record => {
-                                      return(
+                                    {item?.comments?.map(record => (
                                         <span>  <b>{record?.text} - By {state?.name} </b> </span>
+                                      )
                                       )}
-                                      )}
-                                  <form onSubmit = {(e) => 
-                                   {
-                                     e.preventDefault();
+                                  <form onSubmit = {(e) => { e.preventDefault();
                                      makecomment(e.target[0].value,item._id)
                                    }}>
                                     <Input  variant = 'flushed'  placeholder='Write Comment....' 
