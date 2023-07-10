@@ -4,10 +4,9 @@ import  { Card ,CardBody ,Image ,Stack ,Heading ,Text  ,
 }from '@chakra-ui/react'
 import { UserContext } from '../App';
 import axios from 'axios';
-import  { AiFillHeart , AiFillDelete } from 'react-icons/ai';
+import  {  AiFillDelete } from 'react-icons/ai';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
-import { FcLike , FcDislike } from 'react-icons/fc';
 
 
 const Home = () => {
@@ -54,7 +53,6 @@ const Home = () => {
       toast.success(' Post is Liked  ')
     }catch(error)
     {
-      // console.log(' Error While Liking Post is - ',error);
       toast.error(' Something Went Wrong ')
     }
   }

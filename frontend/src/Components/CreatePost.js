@@ -1,6 +1,6 @@
 import React  , {useState , useEffect } from 'react';
-import  { Card ,CardBody ,Image ,Stack ,Heading ,Text  , 
-    Divider ,CardFooter , ButtonGroup , Button, Input, FormLabel 
+import  { Card ,CardBody , Stack ,Heading ,Text  , 
+    Divider ,CardFooter ,Button, Input,  
    }from '@chakra-ui/react';
 import  axios from 'axios';
    

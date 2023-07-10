@@ -1,6 +1,6 @@
 import React, { useContext, useEffect , useState } from 'react'
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { UserContext } from '../App';
 import { toast } from 'react-toastify';
 
@@ -8,7 +8,7 @@ const UserProfile = () => {
 
      const [userprofile,setuserprofile] = useState(null);
       const { userid } = useParams();
-     const {state,dispatch} = useContext(UserContext);
+     const  {state,dispatch} = useContext(UserContext);
       const [showfollower,setshowfollower] = useState(true);
 
     useEffect(() => {
@@ -84,7 +84,7 @@ const UserProfile = () => {
           dispatch({type:"UPDATE",payload : {following : res.data.following,followers : res.data.followers}})
           toast.success(' User has been Unfollowed ')
           setuserprofile((prevstate) => {
-            const newFollower = prevstate.item.followers.filter(item => item != res.data._id)
+            const newFollower = prevstate.item.followers.filter(item => item !== res.data._id)
             return{
              ...prevstate,
              user : {
@@ -111,7 +111,7 @@ const UserProfile = () => {
                                 <div className="first-side-profile" style = {{display:'grid',gridTemplateColumns:'1fr 1fr'}}> 
                                     
                                                         <div className = "profile-pic" style = {{paddingTop:'8px'}}>
-                                                            <span>  <img src = "/photo-1.avif"
+                                                            <span>  <img src = "/photo-1.avif" alt = "Profile-pic"
                                                                 style = {{width:'160px',height:'160px',borderRadius:'80px',objectFit:'cover'}} />
                                                             </span>
                                                         </div>
@@ -143,7 +143,7 @@ const UserProfile = () => {
                                             {userprofile?.posts.map((item) => {
                                                  return (
                                                      <div style = {{margin:'20px'}}> 
-                                                        <img src = {item?.photo} style = {{width:'100%'}} />
+                                                        <img src = {item?.photo} alt = "uploaded-photos" style = {{width:'100%'}} />
                                                      </div>
                                                     
                                                  )

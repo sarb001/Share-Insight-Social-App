@@ -22,7 +22,7 @@ const Profile = () => {
     })
 },[])
 
-console.log('state in Profile is -',state);
+// console.log('state in Profile is -',state);
 
   return (
     <div style = {{marginTop:'85px'}}>
@@ -31,7 +31,7 @@ console.log('state in Profile is -',state);
                 <div className="first-side-profile" style = {{display:'grid',gridTemplateColumns:'1fr 1fr'}}> 
                     
                     <div className = "profile-pic" style = {{paddingTop:'8px'}}>
-                      <span>  <img src = "/photo-1.avif"
+                      <span>  <img src = "/photo-1.avif" alt = "profile-pic"
                         style = {{width:'160px',height:'160px',borderRadius:'80px',objectFit:'cover'}} />
                       </span>
                     </div>
@@ -51,7 +51,7 @@ console.log('state in Profile is -',state);
                       {pics.map(item => {
                         return (
                            <span style = {{margin:'5%'}}>
-                               <img src = {item.photo} style = {{width:'160px',height:'160px',objectFit:'cover'}} />
+                               <img src = {item.photo}  alt = "posted-photos" style = {{width:'160px',height:'160px',objectFit:'cover'}} />
                             </span>
                          )
                       })}
