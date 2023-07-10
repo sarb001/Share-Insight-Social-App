@@ -9,9 +9,9 @@ const registerUser =  asyncHandler(async(req,res) => {
         try
         {
             const { name,email ,password  } = req.body;
-            console.log(' data in Backend is - ',name,email,password)
+        //     console.log(' data in Backend is - ',name,email,password)
             if(!email || !password || !name ){
-                    console.log('Error for data is - ',{email,name,password});
+                //     console.log('Error for data is - ',{email,name,password});
                     return res.status(422).json({error : 'Please FillLLL  all the Fields'})
             }
 
@@ -42,7 +42,7 @@ const registerUser =  asyncHandler(async(req,res) => {
 
     }catch(err)
      {
-        console.log(err);
+        // console.log(err);
         res.status(422).json(' Something  Wrong Happens Signup ')
      }
 })
@@ -78,7 +78,7 @@ const loginUser =  asyncHandler(async(req,res) => {
         })
      }catch(err)
      {
-        console.log(err);
+        // console.log(err);
         res.status(422).json(' Something  Wrong Happens Login ')
      }
 })

@@ -14,7 +14,7 @@ const getuser   = asyncHandler(async(req,res) => {
              .populate("postedBy","_id name")
              .then((posts) => {
                     res.status(200).json({item,posts})
-                    console.log(' Res & Posts arrre - ',{item,posts})
+                    // console.log(' Res & Posts arrre - ',{item,posts})
              }).catch(err => {
                 console.log(err);
              })
