@@ -19,9 +19,7 @@ const CreatePost = () => {
   useEffect(() => {
 
     if(url)
-    {
-      try
-      { 
+    {try{ 
           const config = {
             headers : {
                 'Content-Type' : 'application/json',
@@ -29,7 +27,7 @@ const CreatePost = () => {
             }
           }
 
-          axios.post('/createpost' , { 
+          axios.post('https://socialmedia-backend-piwi.onrender.com/createpost' , { 
               title,body,photo:url
           },config)
           .then(res => { console.log('resp is--',res) })

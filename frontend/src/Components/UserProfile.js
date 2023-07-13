@@ -24,7 +24,7 @@ const UserProfile = () => {
         }
       }
   
-       const getout = await axios.get(`/user/${userid}`,config)
+       const getout = await axios.get(`https://socialmedia-backend-piwi.onrender.com/user/${userid}`,config)
       .then(res => {
         // console.log(' Res inUserProfile is - -',res.data)
         setuserprofile(res.data);
@@ -41,7 +41,7 @@ const UserProfile = () => {
         }
       }
   
-       const followuserhere = await axios.put('/follow',{
+       const followuserhere = await axios.put('https://socialmedia-backend-piwi.onrender.com/follow',{
          followId : userid 
        },config)
        .then(res => 
@@ -75,7 +75,7 @@ const UserProfile = () => {
         }
       }
   
-       const unfollowuserhere = await axios.put('/unfollow',{
+       const unfollowuserhere = await axios.put('https://socialmedia-backend-piwi.onrender.com/unfollow',{
          unfollowId : userid 
        },config)
        .then(res => 

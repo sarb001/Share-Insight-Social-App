@@ -13,8 +13,6 @@ const Home = () => {
 
   const [data,setdata] = useState([]);
   const {state,dispatch} = useContext(UserContext)
-  // const [loading,setloading] = useState(false);
-
   
    useEffect(() => {
 
@@ -26,7 +24,7 @@ const Home = () => {
      }
 
       //  setloading(true);
-       axios.get('/allposts' , config)
+       axios.get('https://socialmedia-backend-piwi.onrender.com/allposts' , config)
        .then(res => {  console.log(' Home All Posts ',res)
         setdata(res.data.posts)
         // setloading(false);
@@ -44,7 +42,7 @@ const Home = () => {
           }
       }
 
-      axios.put('/likepost' , {
+      axios.put('https://socialmedia-backend-piwi.onrender.com/likepost' , {
         postId : id
       },config)
       .then(res => {
@@ -67,7 +65,7 @@ const Home = () => {
           }
       }
 
-      axios.put('/unlikepost' , {
+      axios.put('https://socialmedia-backend-piwi.onrender.com/unlikepost' , {
         postId : id
       },config)
       .then(res => {
@@ -91,7 +89,7 @@ const Home = () => {
           }
       }
 
-          axios.put('/comment' ,{
+          axios.put('https://socialmedia-backend-piwi.onrender.com/comment' ,{
           postId,
           text
         },config)
@@ -117,7 +115,7 @@ const Home = () => {
           }
       }
 
-          axios.delete(`/deletepost/${postid}`,config)
+          axios.delete(`https://socialmedia-backend-piwi.onrender.com/deletepost/${postid}`,config)
          .then(result => {  
           // console.log(' Delete data Responsee  is -' ,result)
           const newdata = data.filter(item => {      
@@ -129,7 +127,6 @@ const Home = () => {
       
     }catch(error)
       {
-          // console.log(' err  while Unlike  post is -',error );
           toast.error(' Something Went Wrong')
       }
   }

@@ -23,7 +23,7 @@ const Signup = () => {
         headers: { 'Content-type' : 'application/json' }, 
       }
 
-       const { data }  = axios.post('/signup' , 
+       const { data }  = axios.post('https://socialmedia-backend-piwi.onrender.com/signup' , 
        {name,
         email,
         password},config)

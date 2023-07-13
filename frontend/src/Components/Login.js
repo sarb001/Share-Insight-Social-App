@@ -27,7 +27,7 @@ const Login = () => {
         headers : { 'Content-type' : 'application/json' }, 
       }
 
-      const {data} = await  axios.post('/login', {
+      const {data} = await  axios.post('https://socialmedia-backend-piwi.onrender.com/login', {
         email ,password},config);
         
         // console.log(' Dataa is - ',data)

@@ -15,7 +15,7 @@ const Profile = () => {
       }
     }
       //  setloading(true)
-    axios.get('/mypost',config)
+    axios.get('https://socialmedia-backend-piwi.onrender.com33/mypost',config)
     .then(res => { console.log(' My Post is---',res.data.mypost)
       setpics(res.data.mypost)
       //  setloading(false)
