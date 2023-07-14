@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose'); 
+const app = require('cors');
 require('dotenv').config();
 
 const Port =  process.env.PORT;
@@ -11,7 +12,7 @@ const UserCreateRoutes = require('./Routes/Post');
 const UsersRoutes = require('./Routes/Users');
 
 app.use(express.json());
-
+app.use(cors());
 app.use('/' ,UserRoutes);
 app.use('/' ,UserCreateRoutes);
 app.use('/' ,UsersRoutes);
@@ -28,6 +29,7 @@ mongoose.connection.on('error' , (err) => {
 })
 
 app.get('/' , (req,res)   => {
+    res.setHeader('Access-Control-Allow-Credentials', "true");
     res.send(' Requests Working Properly ...')
 })
 
